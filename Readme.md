@@ -23,3 +23,7 @@ This project consists of a backend API that combines/transforms TRT's content AP
 ### Query Parameters
 
 - `language`: Filter by language (e.g., `fr`, `ar`, `bs`, `sq`, `mk`, `ru`, `de`)
+
+### Proxy Content
+
+- **GET** `/api/v1/proxy-content/:lang`
