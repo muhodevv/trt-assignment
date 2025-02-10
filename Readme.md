@@ -10,3 +10,16 @@ This project consists of a backend API that combines/transforms TRT's content AP
 - **Frontend**: Next.js (React framework)
 
 ## Project Structure
+
+- **apps/api**: NestJS API
+- **apps/frontend**: Next.js frontend
+
+## API Endpoints
+
+### Get Unified Content
+
+- **GET** `/api/v1/content`
+
+### Query Parameters
+
+- `language`: Filter by language (e.g., `fr`, `ar`, `bs`, `sq`, `mk`, `ru`, `de`)
