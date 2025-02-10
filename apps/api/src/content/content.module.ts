@@ -7,5 +7,6 @@ import { ContentService } from './content.service';
   imports: [HttpModule],
   controllers: [ContentController],
   providers: [ContentService],
+  exports: [ContentService],
 })
 export class ContentModule {}

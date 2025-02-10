@@ -8,17 +8,24 @@ import { firstValueFrom } from 'rxjs';
 export class ContentService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getUnifiedContent(filter?: { language?: string }): Promise<{
+  async getUnifiedContent(filter?: {
+    language?: string | string[];
+    limit?: number;
+  }): Promise<{
     results: UnifiedContent[];
     total: number;
   }> {
     const contentPromises = Object.entries(API_URL_MAPPER)
       .filter(([language]) => {
-        if (filter?.language) {
+        if (filter?.language && Array.isArray(filter.language)) {
+          return filter.language.includes(language);
+        }
+        if (filter?.language && typeof filter.language === 'string') {
           return language === filter.language;
         }
         return true;
       })
+
       .map(async ([language, url]) => {
         try {
           const { data } = await firstValueFrom(this.httpService.get(url));
@@ -35,6 +42,8 @@ export class ContentService {
 
     const results = await Promise.all(contentPromises);
 
+    const limitValue = Math.min(filter?.limit || 150, 150);
+
     const resultsArr = results
       .flat()
       .sort(
@@ -42,7 +51,7 @@ export class ContentService {
           new Date(b.published_date).getTime() -
           new Date(a.published_date).getTime(),
       )
-      .slice(0, 150);
+      .slice(0, limitValue);
 
     return {
       results: resultsArr,
