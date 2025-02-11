@@ -49,3 +49,15 @@ This project consists of a backend API that combines/transforms TRT's content AP
 We're using AI (Gemini) to translate the content.
 
 ! Important: If you will use the translate endpoint, you need to set the `GEMINI_API_KEY` environment variable.
+
+## Frontend
+
+### Technology Stack
+
+- **Frontend**: Next.js (React framework)
+
+! Important: Define the `NEXT_PUBLIC_API_URL` environment variable to use the API.
+
+Preview:
+
+![Preview](./resources/ss.png)
